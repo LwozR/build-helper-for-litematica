@@ -26,7 +26,7 @@ public class TargetRenderer
         Color4f lineColor = new Color4f(color.r, color.g, color.b, 1.0f);
 
         RenderContext ctx = new RenderContext(() -> "buildhelper_litematica:targets/lines",
-                throughBlocks ? MaLiLibPipelines.DEBUG_LINES_MASA_SIMPLE_NO_DEPTH_NO_CULL : MaLiLibPipelines.DEBUG_LINES_MASA_SIMPLE_LEQUAL_DEPTH, 0);
+                throughBlocks ? MaLiLibPipelines.DEBUG_LINES_MASA_SIMPLE_NO_DEPTH_NO_CULL : MaLiLibPipelines.DEBUG_LINES_MASA_SIMPLE_LEQUAL_DEPTH);
         BufferBuilder buffer = ctx.getBuilder();
 
         for (BlockPos pos : targets)
@@ -38,7 +38,7 @@ public class TargetRenderer
         ctx.reset();
 
         buffer = ctx.start(() -> "buildhelper_litematica:targets/sides",
-                throughBlocks ? MaLiLibPipelines.POSITION_COLOR_TRANSLUCENT_NO_DEPTH_NO_CULL : MaLiLibPipelines.POSITION_COLOR_TRANSLUCENT_LEQUAL_DEPTH, 0);
+                throughBlocks ? MaLiLibPipelines.POSITION_COLOR_TRANSLUCENT_NO_DEPTH_NO_CULL : MaLiLibPipelines.POSITION_COLOR_TRANSLUCENT_LEQUAL_DEPTH);
 
         for (BlockPos pos : targets)
         {

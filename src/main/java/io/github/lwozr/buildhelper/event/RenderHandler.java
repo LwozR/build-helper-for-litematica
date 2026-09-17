@@ -42,7 +42,7 @@ public class RenderHandler implements IRenderer
     public void onExtractGuiOverlayPost(GuiContext ctx, float partialTicks, ProfilerFiller profiler)
     {
         if (ctx.mc().player != null && litematicaRenderingEnabled() && Configs.Generic.HUD_ENABLED.getBooleanValue() &&
-            GuiUtils.getCurrentScreen() == null && ctx.mc().gui.hud.isHidden() == false)
+            GuiUtils.getCurrentScreen() == null && ctx.mc().options.hideGui == false)
         {
             profiler.push(Reference.MOD_ID + "_hud");
             HudRenderer.render(ctx);
