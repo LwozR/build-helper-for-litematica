@@ -1,9 +1,10 @@
 package io.github.lwozr.buildhelper.event;
 
 import java.util.function.Supplier;
+import org.joml.Matrix4fc;
 import org.joml.Vector4f;
+import com.mojang.blaze3d.buffers.GpuBufferSlice;
 import com.mojang.blaze3d.pipeline.RenderTarget;
-import com.mojang.renderpearl.api.buffers.GpuBufferSlice;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBuffers;
 import net.minecraft.client.renderer.culling.Frustum;
@@ -25,7 +26,7 @@ public class RenderHandler implements IRenderer
     }
 
     @Override
-    public void onRenderWorldLast(RenderTarget fb, CameraRenderState cameraState, Frustum culling, RenderBuffers buffers, GpuBufferSlice terrainFog, Vector4f fogColor, ProfilerFiller profiler)
+    public void onRenderWorldLast(RenderTarget fb, Matrix4fc posMatrix, CameraRenderState cameraState, Frustum culling, RenderBuffers buffers, GpuBufferSlice terrainFog, Vector4f fogColor, ProfilerFiller profiler)
     {
         Minecraft mc = Minecraft.getInstance();
 
