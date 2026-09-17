@@ -44,6 +44,13 @@ public class Configs implements IConfigHandler
         public static final ConfigBoolean COUNT_SHULKER_CONTENTS = new ConfigBoolean("countShulkerContents", true).apply(KEY);
         public static final ConfigBoolean LAYER_DONE_MESSAGE = new ConfigBoolean("layerDoneMessage", true).apply(KEY);
         public static final ConfigBoolean LAYER_DONE_SOUND = new ConfigBoolean("layerDoneSound", true).apply(KEY);
+        public static final ConfigBooleanHotkeyed AUTO_NEXT_LAYER = new ConfigBooleanHotkeyed("autoNextLayer", true, "").apply(KEY);
+        public static final ConfigOptionList AUTO_NEXT_LAYER_DIRECTION = new ConfigOptionList("autoNextLayerDirection", LayerDirection.UP).apply(KEY);
+        public static final ConfigOptionList BLOCK_ORDER_MODE = new ConfigOptionList("blockOrderMode", BlockOrderMode.AUTOMATIC).apply(KEY);
+        public static final ConfigBooleanHotkeyed CONTAINER_HIGHLIGHT = new ConfigBooleanHotkeyed("containerHighlight", true, "").apply(KEY);
+        public static final ConfigBoolean CONTAINER_INGREDIENTS = new ConfigBoolean("containerIngredients", true).apply(KEY);
+        public static final ConfigBoolean CONTAINER_TOOLTIP = new ConfigBoolean("containerTooltip", true).apply(KEY);
+        public static final ConfigOptionList CONTAINER_SCOPE = new ConfigOptionList("containerScope", MaterialScope.LAYER).apply(KEY);
 
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
                 HIGHLIGHT_HELD_BLOCK,
@@ -58,12 +65,21 @@ public class Configs implements IConfigHandler
                 NEXT_BLOCK_SUGGESTION,
                 COUNT_SHULKER_CONTENTS,
                 LAYER_DONE_MESSAGE,
-                LAYER_DONE_SOUND
+                LAYER_DONE_SOUND,
+                AUTO_NEXT_LAYER,
+                AUTO_NEXT_LAYER_DIRECTION,
+                BLOCK_ORDER_MODE,
+                CONTAINER_HIGHLIGHT,
+                CONTAINER_INGREDIENTS,
+                CONTAINER_TOOLTIP,
+                CONTAINER_SCOPE
         );
 
         public static final List<IHotkey> HOTKEY_LIST = ImmutableList.of(
                 HIGHLIGHT_HELD_BLOCK,
-                HUD_ENABLED
+                HUD_ENABLED,
+                AUTO_NEXT_LAYER,
+                CONTAINER_HIGHLIGHT
         );
     }
 
@@ -75,12 +91,16 @@ public class Configs implements IConfigHandler
         public static final ConfigColor HUD_BACKGROUND = new ConfigColor("hudBackground", "#B0101010").apply(KEY);
         public static final ConfigColor PROGRESS_LAYER_COLOR = new ConfigColor("progressLayerColor", "#FF3FCF4A").apply(KEY);
         public static final ConfigColor PROGRESS_TOTAL_COLOR = new ConfigColor("progressTotalColor", "#FF2A8FD0").apply(KEY);
+        public static final ConfigColor CONTAINER_DIRECT_COLOR = new ConfigColor("containerDirectColor", "#FF3FCF4A").apply(KEY);
+        public static final ConfigColor CONTAINER_INGREDIENT_COLOR = new ConfigColor("containerIngredientColor", "#FFE8C33A").apply(KEY);
 
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
                 HIGHLIGHT_COLOR,
                 HUD_BACKGROUND,
                 PROGRESS_LAYER_COLOR,
-                PROGRESS_TOTAL_COLOR
+                PROGRESS_TOTAL_COLOR,
+                CONTAINER_DIRECT_COLOR,
+                CONTAINER_INGREDIENT_COLOR
         );
     }
 
@@ -89,9 +109,11 @@ public class Configs implements IConfigHandler
         private static final String KEY = Reference.MOD_ID + ".config.hotkeys";
 
         public static final ConfigHotkey OPEN_CONFIG_GUI = new ConfigHotkey("openConfigGui", "M,B").apply(KEY);
+        public static final ConfigHotkey OPEN_BLOCK_ORDER_GUI = new ConfigHotkey("openBlockOrderGui", "M,O").apply(KEY);
 
         public static final List<ConfigHotkey> HOTKEY_LIST = ImmutableList.of(
-                OPEN_CONFIG_GUI
+                OPEN_CONFIG_GUI,
+                OPEN_BLOCK_ORDER_GUI
         );
     }
 

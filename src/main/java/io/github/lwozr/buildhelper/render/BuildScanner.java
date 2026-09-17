@@ -28,6 +28,8 @@ import fi.dy.masa.litematica.world.SchematicWorldHandler;
 import fi.dy.masa.litematica.world.WorldSchematic;
 import io.github.lwozr.buildhelper.Reference;
 import io.github.lwozr.buildhelper.config.Configs;
+import io.github.lwozr.buildhelper.config.LayerDirection;
+import io.github.lwozr.buildhelper.config.MaterialScope;
 
 public class BuildScanner
 {
@@ -48,24 +50,30 @@ public class BuildScanner
     private ItemStack lastHeld = ItemStack.EMPTY;
     private int nearbyTickCounter;
     private Set<Item> ignoredItems = Set.of();
+    private int version;
 
     private final List<int[]> scanBoxes = new ArrayList<>();
     private int scanBoxIndex = -1;
     private int scanX, scanY, scanZ;
     private int passTotal, passCorrect;
     private final Map<Item, Integer> passMissing = new HashMap<>();
+    private final Map<Item, Integer> passItems = new HashMap<>();
     private int total, correct;
     private final Map<Item, Integer> fullMissing = new HashMap<>();
+    private final Map<Item, Integer> fullItems = new HashMap<>();
     private boolean hasFullResult;
 
     private int layerTickCounter;
     @Nullable private String lastLayerKey;
+    @Nullable private String autoMovedKey;
     private int lastLayerRemaining = -1;
     private boolean layerActive;
     private boolean layerValid;
     private int layerTotal, layerCorrect;
     private String layerLabel = "";
+    private String layerOrderKey = "all";
     private final Map<Item, Integer> layerMissing = new HashMap<>();
+    private final Map<Item, Integer> layerItems = new HashMap<>();
 
     public static BuildScanner getInstance()
     {
@@ -82,6 +90,11 @@ public class BuildScanner
         return this.nearbyMissing;
     }
 
+    public int getVersion()
+    {
+        return this.version;
+    }
+
     public boolean isLayerActive()
     {
         return this.layerActive;
@@ -95,6 +108,11 @@ public class BuildScanner
     public String getLayerLabel()
     {
         return this.layerLabel;
+    }
+
+    public String getLayerOrderKey()
+    {
+        return this.layerActive ? this.layerOrderKey : "all";
     }
 
     public int getLayerTotal()
@@ -137,12 +155,53 @@ public class BuildScanner
         return this.layerActive && this.layerValid ? this.layerMissing : this.nearbyMissing;
     }
 
+    public Map<Item, Integer> getOrderItems()
+    {
+        if (this.layerActive)
+        {
+            return this.layerValid ? this.layerItems : Map.of();
+        }
+
+        return this.fullItems;
+    }
+
+    public Map<Item, Integer> getOrderMissing()
+    {
+        if (this.layerActive)
+        {
+            return this.layerValid ? this.layerMissing : Map.of();
+        }
+
+        return this.fullMissing;
+    }
+
+    public Map<Item, Integer> getScopeMissing(MaterialScope scope)
+    {
+        if (scope == MaterialScope.LAYER && this.layerActive)
+        {
+            return this.layerValid ? this.layerMissing : this.nearbyMissing;
+        }
+
+        return this.fullMissing;
+    }
+
     private static boolean anyEnabled()
     {
         return Configs.Generic.HIGHLIGHT_HELD_BLOCK.getBooleanValue() ||
                Configs.Generic.HUD_ENABLED.getBooleanValue() ||
                Configs.Generic.LAYER_DONE_MESSAGE.getBooleanValue() ||
-               Configs.Generic.LAYER_DONE_SOUND.getBooleanValue();
+               Configs.Generic.LAYER_DONE_SOUND.getBooleanValue() ||
+               Configs.Generic.AUTO_NEXT_LAYER.getBooleanValue() ||
+               Configs.Generic.CONTAINER_HIGHLIGHT.getBooleanValue() ||
+               Configs.Generic.CONTAINER_TOOLTIP.getBooleanValue();
+    }
+
+    private static boolean needsFullScan()
+    {
+        boolean progress = Configs.Generic.HUD_ENABLED.getBooleanValue() && Configs.Generic.PROGRESS_BAR.getBooleanValue();
+        boolean containers = (Configs.Generic.CONTAINER_HIGHLIGHT.getBooleanValue() || Configs.Generic.CONTAINER_TOOLTIP.getBooleanValue()) &&
+                             Configs.Generic.CONTAINER_SCOPE.getOptionListValue() == MaterialScope.SCHEMATIC;
+        return progress || containers || DataManager.getRenderLayerRange().getLayerMode() == LayerMode.ALL;
     }
 
     public void onClientTick(Minecraft mc)
@@ -176,10 +235,12 @@ public class BuildScanner
                 this.layerTickCounter = 10;
                 this.lastLayerRemaining = -1;
             }
+
             this.scanNearby(schematicWorld, held);
+            this.version++;
         }
 
-        if (Configs.Generic.HUD_ENABLED.getBooleanValue() && Configs.Generic.PROGRESS_BAR.getBooleanValue())
+        if (needsFullScan())
         {
             this.stepFullScan(schematicWorld);
         }
@@ -192,11 +253,13 @@ public class BuildScanner
         this.heldTargets.clear();
         this.nearbyMissing.clear();
         this.fullMissing.clear();
+        this.fullItems.clear();
         this.scanBoxIndex = -1;
         this.hasFullResult = false;
         this.total = 0;
         this.correct = 0;
         this.lastLayerKey = null;
+        this.autoMovedKey = null;
         this.lastLayerRemaining = -1;
         this.resetLayerStats();
     }
@@ -208,6 +271,7 @@ public class BuildScanner
         this.layerTotal = 0;
         this.layerCorrect = 0;
         this.layerMissing.clear();
+        this.layerItems.clear();
     }
 
     private static List<int[]> collectBoxes()
@@ -336,12 +400,6 @@ public class BuildScanner
                         }
 
                         Item item = requiredItem(schematicWorld, mutable);
-
-                        if (item == null)
-                        {
-                            continue;
-                        }
-
                         addCount(this.nearbyMissing, item);
 
                         if (item == heldItem && this.heldTargets.size() < MAX_TARGETS)
@@ -367,6 +425,7 @@ public class BuildScanner
                 this.total = 0;
                 this.correct = 0;
                 this.fullMissing.clear();
+                this.fullItems.clear();
                 return;
             }
 
@@ -378,6 +437,7 @@ public class BuildScanner
             this.passTotal = 0;
             this.passCorrect = 0;
             this.passMissing.clear();
+            this.passItems.clear();
         }
 
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
@@ -394,7 +454,9 @@ public class BuildScanner
 
                 if (type != TYPE_SKIP)
                 {
+                    Item item = requiredItem(schematicWorld, mutable);
                     this.passTotal++;
+                    addCount(this.passItems, item);
 
                     if (type == TYPE_CORRECT)
                     {
@@ -402,12 +464,7 @@ public class BuildScanner
                     }
                     else if (type == TYPE_MISSING)
                     {
-                        Item item = requiredItem(schematicWorld, mutable);
-
-                        if (item != null)
-                        {
-                            addCount(this.passMissing, item);
-                        }
+                        addCount(this.passMissing, item);
                     }
                 }
             }
@@ -433,8 +490,11 @@ public class BuildScanner
                             this.correct = this.passCorrect;
                             this.fullMissing.clear();
                             this.fullMissing.putAll(this.passMissing);
+                            this.fullItems.clear();
+                            this.fullItems.putAll(this.passItems);
                             this.hasFullResult = true;
                             this.scanBoxIndex = -1;
+                            this.version++;
                             return;
                         }
 
@@ -456,6 +516,7 @@ public class BuildScanner
         if (mode == LayerMode.ALL)
         {
             this.lastLayerKey = null;
+            this.autoMovedKey = null;
             this.lastLayerRemaining = -1;
             this.resetLayerStats();
             return;
@@ -486,17 +547,20 @@ public class BuildScanner
         this.layerActive = true;
         this.layerLabel = lmin == lmax ? String.valueOf(lmin) :
                           (lmin == Integer.MIN_VALUE ? "≤" + lmax : (lmax == Integer.MAX_VALUE ? "≥" + lmin : lmin + "-" + lmax));
+        this.layerOrderKey = axis.getName() + ":" + this.layerLabel;
 
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         Map<Item, Integer> missing = new HashMap<>();
+        Map<Item, Integer> items = new HashMap<>();
         int layerTotal = 0;
         int layerCorrect = 0;
         int remaining = 0;
         boolean incomplete = false;
         long volume = 0;
         int ai = axis == Direction.Axis.X ? 0 : (axis == Direction.Axis.Y ? 1 : 2);
+        List<int[]> boxes = collectBoxes();
 
-        for (int[] b : collectBoxes())
+        for (int[] b : boxes)
         {
             int[] c = b.clone();
             c[ai] = Math.max(c[ai], lmin);
@@ -513,8 +577,10 @@ public class BuildScanner
             {
                 this.layerValid = false;
                 this.layerMissing.clear();
+                this.layerItems.clear();
                 this.lastLayerKey = key;
                 this.lastLayerRemaining = -1;
+                this.version++;
                 return;
             }
 
@@ -538,7 +604,9 @@ public class BuildScanner
                             continue;
                         }
 
+                        Item item = requiredItem(schematicWorld, mutable);
                         layerTotal++;
+                        addCount(items, item);
 
                         if (type == TYPE_CORRECT)
                         {
@@ -550,12 +618,7 @@ public class BuildScanner
 
                         if (type == TYPE_MISSING)
                         {
-                            Item item = requiredItem(schematicWorld, mutable);
-
-                            if (item != null)
-                            {
-                                addCount(missing, item);
-                            }
+                            addCount(missing, item);
                         }
                     }
                 }
@@ -567,8 +630,22 @@ public class BuildScanner
         this.layerCorrect = layerCorrect;
         this.layerMissing.clear();
         this.layerMissing.putAll(missing);
+        this.layerItems.clear();
+        this.layerItems.putAll(items);
+        this.version++;
 
-        if (keyChanged == false && incomplete == false && this.lastLayerRemaining > 0 && remaining == 0 && layerTotal > 0)
+        boolean justCompleted = keyChanged == false && incomplete == false && this.lastLayerRemaining > 0 && remaining == 0 && layerTotal > 0;
+        boolean arrivedDone = keyChanged && key.equals(this.autoMovedKey) && incomplete == false && remaining == 0;
+
+        if (keyChanged && arrivedDone == false)
+        {
+            this.autoMovedKey = null;
+        }
+
+        this.lastLayerKey = key;
+        this.lastLayerRemaining = incomplete ? -1 : remaining;
+
+        if (justCompleted)
         {
             if (Configs.Generic.LAYER_DONE_MESSAGE.getBooleanValue())
             {
@@ -581,7 +658,36 @@ public class BuildScanner
             }
         }
 
-        this.lastLayerKey = key;
-        this.lastLayerRemaining = incomplete ? -1 : remaining;
+        if ((justCompleted || arrivedDone) && mode == LayerMode.SINGLE_LAYER && Configs.Generic.AUTO_NEXT_LAYER.getBooleanValue())
+        {
+            this.advanceLayer(range, ai, lmin, boxes);
+        }
+    }
+
+    private void advanceLayer(LayerRange range, int axisIndex, int current, List<int[]> boxes)
+    {
+        int step = ((LayerDirection) Configs.Generic.AUTO_NEXT_LAYER_DIRECTION.getOptionListValue()).getStep();
+        int next = current + step;
+        boolean inside = false;
+
+        for (int[] b : boxes)
+        {
+            if (next >= b[axisIndex] && next <= b[axisIndex + 3])
+            {
+                inside = true;
+                break;
+            }
+        }
+
+        if (inside == false)
+        {
+            this.autoMovedKey = null;
+            InfoUtils.showInGameMessage(MessageType.SUCCESS, 4000, Reference.MOD_ID + ".message.schematic_done");
+            return;
+        }
+
+        range.setLayerSingle(next);
+        this.autoMovedKey = LayerMode.SINGLE_LAYER.name() + ":" + range.getAxis().getName() + ":" + next + ":" + next;
+        InfoUtils.showInGameMessage(MessageType.INFO, 3000, Reference.MOD_ID + ".message.next_layer", next);
     }
 }

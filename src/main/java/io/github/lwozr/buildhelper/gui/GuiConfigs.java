@@ -3,6 +3,7 @@ package io.github.lwozr.buildhelper.gui;
 import java.util.List;
 import java.util.Objects;
 import fi.dy.masa.malilib.config.IConfigBase;
+import fi.dy.masa.malilib.gui.GuiBase;
 import fi.dy.masa.malilib.gui.GuiConfigsBase;
 import fi.dy.masa.malilib.gui.button.ButtonBase;
 import fi.dy.masa.malilib.gui.button.ButtonGeneric;
@@ -36,6 +37,10 @@ public class GuiConfigs extends GuiConfigsBase
             this.addButton(button, new ButtonListener(t, this));
             x += button.getWidth() + 2;
         }
+
+        String orderLabel = StringUtils.translate(Reference.MOD_ID + ".gui.button.block_order");
+        ButtonGeneric orderButton = new ButtonGeneric(x + 8, y, -1, 20, orderLabel);
+        this.addButton(orderButton, (button, mouseButton) -> GuiBase.openGui(new GuiBlockOrder().setParent(this)));
     }
 
     @Override
