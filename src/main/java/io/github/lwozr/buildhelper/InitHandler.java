@@ -27,6 +27,7 @@ public class InitHandler implements IInitializationHandler
         RenderHandler renderer = new RenderHandler();
         RenderEventHandler.getInstance().registerInGameGuiRenderer(renderer);
         RenderEventHandler.getInstance().registerWorldLastRenderer(renderer);
+        RenderEventHandler.getInstance().registerTooltipLastRenderer(renderer);
 
         TickHandler.getInstance().registerClientTickHandler(new ClientTickHandler());
 

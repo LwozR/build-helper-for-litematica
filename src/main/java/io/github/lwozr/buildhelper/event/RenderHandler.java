@@ -1,5 +1,6 @@
 package io.github.lwozr.buildhelper.event;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import org.joml.Matrix4fc;
 import org.joml.Vector4f;
@@ -9,13 +10,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBuffers;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import fi.dy.masa.malilib.interfaces.IRenderer;
 import fi.dy.masa.malilib.render.GuiContext;
 import fi.dy.masa.malilib.util.GuiUtils;
 import io.github.lwozr.buildhelper.Reference;
 import io.github.lwozr.buildhelper.config.Configs;
 import io.github.lwozr.buildhelper.render.HudRenderer;
+import io.github.lwozr.buildhelper.render.MaterialTooltip;
 import io.github.lwozr.buildhelper.render.TargetRenderer;
 
 public class RenderHandler implements IRenderer
@@ -47,6 +52,15 @@ public class RenderHandler implements IRenderer
             profiler.push(Reference.MOD_ID + "_hud");
             HudRenderer.render(ctx);
             profiler.pop();
+        }
+    }
+
+    @Override
+    public void onRenderTooltipComponentInsertLast(Item.TooltipContext context, ItemStack stack, Consumer<Component> list)
+    {
+        if (Configs.Generic.CONTAINER_TOOLTIP.getBooleanValue() && stack.isEmpty() == false)
+        {
+            MaterialTooltip.append(stack, list);
         }
     }
 

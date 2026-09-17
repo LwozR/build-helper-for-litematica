@@ -24,6 +24,10 @@
         ]
     },
 
+    "mixins": [
+        "mixins.buildhelper_litematica.json"
+    ],
+
     "depends": {
         "minecraft": "${minecraft_range}",
         "fabricloader": ">=0.19.5",

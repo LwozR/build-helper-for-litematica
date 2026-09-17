@@ -17,7 +17,9 @@ import fi.dy.masa.malilib.util.InventoryUtils;
 import fi.dy.masa.malilib.util.StringUtils;
 import fi.dy.masa.litematica.world.SchematicWorldHandler;
 import io.github.lwozr.buildhelper.Reference;
+import io.github.lwozr.buildhelper.config.BlockOrderMode;
 import io.github.lwozr.buildhelper.config.Configs;
+import io.github.lwozr.buildhelper.data.BlockOrder;
 
 public class HudRenderer
 {
@@ -33,7 +35,7 @@ public class HudRenderer
         return StringUtils.translate(KEY + key, args);
     }
 
-    private static int countInInventory(Minecraft mc, Item item)
+    public static int countInInventory(Minecraft mc, Item item)
     {
         Inventory inv = mc.player.getInventory();
         boolean shulkers = Configs.Generic.COUNT_SHULKER_CONTENTS.getBooleanValue();
@@ -110,6 +112,19 @@ public class HudRenderer
     @Nullable
     private static Item pickNextItem(Minecraft mc, BuildScanner scanner)
     {
+        if (Configs.Generic.BLOCK_ORDER_MODE.getOptionListValue() == BlockOrderMode.MANUAL)
+        {
+            Map<Item, Integer> missing = scanner.getSuggestionMap();
+
+            for (Item item : BlockOrder.effectiveOrder())
+            {
+                if (missing.getOrDefault(item, 0) > 0)
+                {
+                    return item;
+                }
+            }
+        }
+
         Item best = null;
         int bestCount = 0;
         Item bestAvailable = null;
