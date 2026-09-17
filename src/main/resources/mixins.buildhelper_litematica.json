@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "package": "io.github.lwozr.buildhelper.mixin",
+    "compatibilityLevel": "JAVA_25",
+    "minVersion": "0.8",
+    "client": [
+        "MixinAbstractContainerScreen"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
