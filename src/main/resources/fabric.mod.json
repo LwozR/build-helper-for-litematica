@@ -1,0 +1,33 @@
+{
+    "schemaVersion": 1,
+    "id": "buildhelper_litematica",
+    "name": "Build Helper for Litematica",
+    "version": "${mod_version}",
+    "description": "An unofficial client-side addon for Litematica. Highlights where the block in your hand goes, shows how many are left, suggests the next block for the current layer and tracks your build progress.",
+    "authors": [
+        "LwozR"
+    ],
+    "contact": {
+        "sources": "https://github.com/LwozR/build-helper-for-litematica",
+        "issues": "https://github.com/LwozR/build-helper-for-litematica/issues"
+    },
+    "license": "LGPL-3.0-only",
+    "icon": "assets/buildhelper_litematica/icon.png",
+
+    "environment": "client",
+    "entrypoints": {
+        "main": [
+            "io.github.lwozr.buildhelper.BuildHelperMod"
+        ],
+        "modmenu": [
+            "io.github.lwozr.buildhelper.compat.modmenu.ModMenuImpl"
+        ]
+    },
+
+    "depends": {
+        "minecraft": ">=26.3-beta.1 <26.4",
+        "fabricloader": ">=0.19.5",
+        "malilib": ">=0.29.99-",
+        "litematica": ">=0.28.99-"
+    }
+}
