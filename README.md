@@ -35,27 +35,19 @@ Hold a block from the schematic and every spot where it still needs to be placed
 Blocks you ignored in the Litematica material list are left out.
 
 ### 📊 Info panel and progress
-<img src="docs/images/info-panel.png" alt="Info panel" width="100%">
-
 A small panel shows the block in your hand, how many are left, how many you carry (shulker boxes included) and whether that is enough.
 Progress bars follow the Litematica render layers, so you always see the current layer and the whole schematic.
 Wall, fence and pane connections that the game changes on its own are counted as correct.
 
 ### ⬆️ Auto next layer
-<img src="docs/images/auto-next-layer.png" alt="Auto next layer" width="100%">
-
 In single layer mode the render layer moves on as soon as the current layer is complete.
 Empty and finished layers are skipped and it stops at the last layer of the schematic. The direction can be up or down.
 
 ### 🔢 Block order
-<img src="docs/images/block-order.png" alt="Block order" width="100%">
-
 When you are not holding a needed block, the panel suggests what to place next and where it is in your inventory.
 Let it pick the most needed block automatically, or set your own order for every layer with the arrows.
 
 ### 📦 Container highlight
-<img src="docs/images/container-highlight.png" alt="Container highlight" width="100%">
-
 Open a chest, barrel or shulker box and the items you need are outlined:
 
 | Outline | Meaning |
