@@ -252,9 +252,16 @@ public class BuildScanner
             return TYPE_SKIP;
         }
 
-        if (this.ignoredItems.isEmpty() == false && this.ignoredItems.contains(requiredItem(schematicWorld, pos)))
+        Item item = requiredItem(schematicWorld, pos);
+
+        if (item == null)
         {
             return TYPE_SKIP;
+        }
+
+        if (this.ignoredItems.contains(item))
+        {
+            return TYPE_CORRECT;
         }
 
         BlockState stateClient = this.mc.level.getBlockState(pos);
