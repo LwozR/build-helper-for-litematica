@@ -25,9 +25,9 @@
     },
 
     "depends": {
-        "minecraft": ">=26.3-beta.1 <26.4",
+        "minecraft": "${minecraft_range}",
         "fabricloader": ">=0.19.5",
-        "malilib": ">=0.29.99-",
-        "litematica": ">=0.28.99-"
+        "malilib": "${malilib_range}",
+        "litematica": "${litematica_range}"
     }
 }
