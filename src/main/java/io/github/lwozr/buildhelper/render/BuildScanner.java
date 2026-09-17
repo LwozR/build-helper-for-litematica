@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.annotation.Nullable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -44,6 +45,7 @@ public class BuildScanner
     private final Map<Item, Integer> nearbyMissing = new HashMap<>();
     private ItemStack lastHeld = ItemStack.EMPTY;
     private int nearbyTickCounter;
+    private Set<Item> ignoredItems = Set.of();
 
     private final List<int[]> scanBoxes = new ArrayList<>();
     private int scanBoxIndex = -1;
@@ -163,6 +165,15 @@ public class BuildScanner
         {
             this.nearbyTickCounter = 0;
             this.lastHeld = held.copy();
+            Set<Item> ignored = IgnoredMaterials.collect();
+
+            if (ignored.equals(this.ignoredItems) == false)
+            {
+                this.ignoredItems = ignored;
+                this.scanBoxIndex = -1;
+                this.layerTickCounter = 10;
+                this.lastLayerRemaining = -1;
+            }
             this.scanNearby(schematicWorld, held);
         }
 
@@ -235,6 +246,11 @@ public class BuildScanner
         BlockState stateSchematic = schematicWorld.getBlockState(pos);
 
         if (stateSchematic.isAir())
+        {
+            return TYPE_SKIP;
+        }
+
+        if (this.ignoredItems.isEmpty() == false && this.ignoredItems.contains(requiredItem(schematicWorld, pos)))
         {
             return TYPE_SKIP;
         }
