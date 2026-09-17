@@ -52,7 +52,7 @@ public class RecipeIndex
 
         try
         {
-            PackResources pack = ServerPacksSource.createVanillaPackSource().fullResources();
+            PackResources pack = ServerPacksSource.createVanillaPackSource();
             Map<String, JsonObject> tagFiles = new HashMap<>();
             List<JsonObject> recipeFiles = new ArrayList<>();
 
