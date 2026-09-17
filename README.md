@@ -1,5 +1,3 @@
-[![build](https://github.com/LwozR/build-helper-for-litematica/actions/workflows/build.yml/badge.svg)](https://github.com/LwozR/build-helper-for-litematica/actions/workflows/build.yml)
-
 Build Helper for Litematica
 ==============
 Build Helper for Litematica is a client-side Minecraft mod for Fabric.
@@ -8,7 +6,7 @@ It is not affiliated with or endorsed by masa or the Litematica project.
 
 Requires [Litematica](https://github.com/sakura-ryoko/litematica) and [MaLiLib](https://github.com/sakura-ryoko/malilib).
 
-For compiled builds (= downloads), see https://github.com/LwozR/build-helper-for-litematica/actions
+For compiled builds (= downloads), see https://github.com/LwozR/build-helper-for-litematica/releases
 
 Features
 ========
