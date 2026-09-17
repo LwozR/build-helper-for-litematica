@@ -14,6 +14,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
 import fi.dy.masa.malilib.gui.Message.MessageType;
 import fi.dy.masa.malilib.util.InfoUtils;
 import fi.dy.masa.malilib.util.LayerMode;
@@ -38,6 +39,7 @@ public class BuildScanner
     private static final int TYPE_CORRECT = 1;
     private static final int TYPE_MISSING = 2;
     private static final int TYPE_WRONG = 3;
+    private static final Set<String> NEIGHBOR_SHAPE_PROPERTIES = Set.of("north", "south", "east", "west", "up", "down", "shape", "waterlogged");
 
     private final Minecraft mc = Minecraft.getInstance();
 
@@ -257,12 +259,31 @@ public class BuildScanner
 
         BlockState stateClient = this.mc.level.getBlockState(pos);
 
-        if (stateClient == stateSchematic)
+        if (stateClient == stateSchematic || sameIgnoringNeighborShape(stateClient, stateSchematic))
         {
             return TYPE_CORRECT;
         }
 
         return (stateClient.isAir() || stateClient.canBeReplaced()) ? TYPE_MISSING : TYPE_WRONG;
+    }
+
+    private static boolean sameIgnoringNeighborShape(BlockState stateClient, BlockState stateSchematic)
+    {
+        if (stateClient.getBlock() != stateSchematic.getBlock())
+        {
+            return false;
+        }
+
+        for (Property<?> property : stateSchematic.getProperties())
+        {
+            if (NEIGHBOR_SHAPE_PROPERTIES.contains(property.getName()) == false &&
+                stateClient.getValue(property).equals(stateSchematic.getValue(property)) == false)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Nullable
