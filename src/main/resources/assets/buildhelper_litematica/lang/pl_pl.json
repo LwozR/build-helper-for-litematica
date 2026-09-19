@@ -129,5 +129,16 @@
     "buildhelper_litematica.tooltip.makes_layer": "Zamienia się (warstwa %s) w:",
     "buildhelper_litematica.tooltip.makes_schematic": "Zamienia się w:",
     "buildhelper_litematica.tooltip.product": "→ %sx %s (≈ %s)",
-    "buildhelper_litematica.tooltip.more": "… i %s więcej"
+    "buildhelper_litematica.tooltip.more": "… i %s więcej",
+    "buildhelper_litematica.config.generic.name.printerEnabled": "Automatyczne stawianie",
+    "buildhelper_litematica.config.generic.prettyName.printerEnabled": "Automatyczne stawianie",
+    "buildhelper_litematica.config.generic.comment.printerEnabled": "Automatycznie stawia blok z ręki w miejscach podświetlonych na zielono w zasięgu. Wiele serwerów na to nie pozwala, używaj we własnym świecie lub Realmie.",
+    "buildhelper_litematica.config.generic.name.printerSpeed": "Szybkość stawiania",
+    "buildhelper_litematica.config.generic.prettyName.printerSpeed": "Szybkość stawiania",
+    "buildhelper_litematica.config.generic.comment.printerSpeed": "Bloki stawiane na sekundę",
+    "buildhelper_litematica.config.generic.name.printerSneakOnly": "Tylko podczas skradania",
+    "buildhelper_litematica.config.generic.prettyName.printerSneakOnly": "Tylko podczas skradania",
+    "buildhelper_litematica.config.generic.comment.printerSneakOnly": "Stawia bloki tylko podczas skradania się",
+    "buildhelper_litematica.hud.printer_on": "Automatyczne stawianie: WŁ.",
+    "buildhelper_litematica.message.printer_warning": "Automatyczne stawianie jest włączone. Wiele serwerów na to nie pozwala."
 }

@@ -129,5 +129,16 @@
     "buildhelper_litematica.tooltip.makes_layer": "Diventa, nello strato %s:",
     "buildhelper_litematica.tooltip.makes_schematic": "Diventa:",
     "buildhelper_litematica.tooltip.product": "→ %sx %s (≈ %s)",
-    "buildhelper_litematica.tooltip.more": "… e altri %s"
+    "buildhelper_litematica.tooltip.more": "… e altri %s",
+    "buildhelper_litematica.config.generic.name.printerEnabled": "Piazzamento automatico",
+    "buildhelper_litematica.config.generic.prettyName.printerEnabled": "Piazzamento automatico",
+    "buildhelper_litematica.config.generic.comment.printerEnabled": "Piazza automaticamente il blocco in mano nei punti evidenziati in verde a portata. Molti server non lo permettono, usalo nel tuo mondo o Realm.",
+    "buildhelper_litematica.config.generic.name.printerSpeed": "Velocità di piazzamento",
+    "buildhelper_litematica.config.generic.prettyName.printerSpeed": "Velocità di piazzamento",
+    "buildhelper_litematica.config.generic.comment.printerSpeed": "Blocchi piazzati al secondo",
+    "buildhelper_litematica.config.generic.name.printerSneakOnly": "Solo da accovacciato",
+    "buildhelper_litematica.config.generic.prettyName.printerSneakOnly": "Solo da accovacciato",
+    "buildhelper_litematica.config.generic.comment.printerSneakOnly": "Piazza blocchi solo mentre sei accovacciato",
+    "buildhelper_litematica.hud.printer_on": "Piazzamento automatico: ATTIVO",
+    "buildhelper_litematica.message.printer_warning": "Il piazzamento automatico è attivo. Molti server non lo permettono."
 }

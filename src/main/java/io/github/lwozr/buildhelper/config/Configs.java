@@ -51,6 +51,9 @@ public class Configs implements IConfigHandler
         public static final ConfigBoolean CONTAINER_INGREDIENTS = new ConfigBoolean("containerIngredients", true).apply(KEY);
         public static final ConfigBoolean CONTAINER_TOOLTIP = new ConfigBoolean("containerTooltip", true).apply(KEY);
         public static final ConfigOptionList CONTAINER_SCOPE = new ConfigOptionList("containerScope", MaterialScope.LAYER).apply(KEY);
+        public static final ConfigBooleanHotkeyed PRINTER_ENABLED = new ConfigBooleanHotkeyed("printerEnabled", false, "").apply(KEY);
+        public static final ConfigInteger PRINTER_SPEED = new ConfigInteger("printerSpeed", 20, 1, 200).apply(KEY);
+        public static final ConfigBoolean PRINTER_SNEAK_ONLY = new ConfigBoolean("printerSneakOnly", false).apply(KEY);
 
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
                 HIGHLIGHT_HELD_BLOCK,
@@ -72,14 +75,18 @@ public class Configs implements IConfigHandler
                 CONTAINER_HIGHLIGHT,
                 CONTAINER_INGREDIENTS,
                 CONTAINER_TOOLTIP,
-                CONTAINER_SCOPE
+                CONTAINER_SCOPE,
+                PRINTER_ENABLED,
+                PRINTER_SPEED,
+                PRINTER_SNEAK_ONLY
         );
 
         public static final List<IHotkey> HOTKEY_LIST = ImmutableList.of(
                 HIGHLIGHT_HELD_BLOCK,
                 HUD_ENABLED,
                 AUTO_NEXT_LAYER,
-                CONTAINER_HIGHLIGHT
+                CONTAINER_HIGHLIGHT,
+                PRINTER_ENABLED
         );
     }
 

@@ -58,6 +58,15 @@ Open a chest, barrel or shulker box and the items you need are outlined:
 The tooltip shows the item id, how many are needed and what the item turns into, with an estimate of how many you need.
 Recipes are read from the game itself, so it also works on servers and Realms.
 
+### 🤖 Auto place
+Places the block in your hand into the green highlighted spots within reach, facing the right way.
+Stairs, slabs, logs, trapdoors and other directional blocks are placed in the correct state, and wooden doors, trapdoors and fence gates are opened when the schematic wants them open.
+Spots it cannot place correctly are skipped, and it stops when the block in your hand runs out.
+The speed can be set from 1 to 200 blocks per second, and it can be limited to only work while sneaking.
+
+> [!CAUTION]
+> Auto place is off by default. Many servers do not allow automatic block placement, so only use it in your own world or Realm.
+
 ---
 
 ## 📥 Installation
@@ -82,6 +91,7 @@ Downloads are on the [releases page](https://github.com/LwozR/build-helper-for-l
 | --- | --- |
 | `M` + `B` | Open the settings |
 | `M` + `O` | Open the block order of the current layer |
+| *(none)* | Auto place on/off, set it in the settings |
 
 Every feature can be turned on or off, and hotkeys, panel position, scale and colors can be changed in the settings.
 The settings are also available through [Mod Menu](https://modrinth.com/mod/modmenu).

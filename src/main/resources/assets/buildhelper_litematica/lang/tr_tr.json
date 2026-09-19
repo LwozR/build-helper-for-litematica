@@ -129,5 +129,16 @@
     "buildhelper_litematica.tooltip.makes_layer": "Katman %s için dönüştürülür:",
     "buildhelper_litematica.tooltip.makes_schematic": "Şunlara dönüştürülür:",
     "buildhelper_litematica.tooltip.product": "→ %sx %s (≈ %s adet gerekir)",
-    "buildhelper_litematica.tooltip.more": "… ve %s tane daha"
+    "buildhelper_litematica.tooltip.more": "… ve %s tane daha",
+    "buildhelper_litematica.config.generic.name.printerEnabled": "Otomatik Koyma",
+    "buildhelper_litematica.config.generic.prettyName.printerEnabled": "Otomatik Koyma",
+    "buildhelper_litematica.config.generic.comment.printerEnabled": "Elindeki bloğu erişim mesafendeki yeşil yanan yerlere otomatik koyar. Çoğu sunucuda yasaktır; kendi dünyanda ya da Realm'inde kullan.",
+    "buildhelper_litematica.config.generic.name.printerSpeed": "Otomatik Koyma Hızı",
+    "buildhelper_litematica.config.generic.prettyName.printerSpeed": "Otomatik Koyma Hızı",
+    "buildhelper_litematica.config.generic.comment.printerSpeed": "Saniyede koyulan blok sayısı",
+    "buildhelper_litematica.config.generic.name.printerSneakOnly": "Sadece Çömelirken Koy",
+    "buildhelper_litematica.config.generic.prettyName.printerSneakOnly": "Sadece Çömelirken Koy",
+    "buildhelper_litematica.config.generic.comment.printerSneakOnly": "Sadece çömelirken blok koyar",
+    "buildhelper_litematica.hud.printer_on": "Otomatik koyma: AÇIK",
+    "buildhelper_litematica.message.printer_warning": "Otomatik koyma açık. Çoğu sunucuda bu yasaktır."
 }

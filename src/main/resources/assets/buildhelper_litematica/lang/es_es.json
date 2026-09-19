@@ -129,5 +129,16 @@
     "buildhelper_litematica.tooltip.makes_layer": "Se convierte, en la capa %s, en:",
     "buildhelper_litematica.tooltip.makes_schematic": "Se convierte en:",
     "buildhelper_litematica.tooltip.product": "→ %sx %s (≈ %s)",
-    "buildhelper_litematica.tooltip.more": "… y %s más"
+    "buildhelper_litematica.tooltip.more": "… y %s más",
+    "buildhelper_litematica.config.generic.name.printerEnabled": "Colocación automática",
+    "buildhelper_litematica.config.generic.prettyName.printerEnabled": "Colocación automática",
+    "buildhelper_litematica.config.generic.comment.printerEnabled": "Coloca automáticamente el bloque de tu mano en los lugares resaltados en verde a tu alcance. Muchos servidores no lo permiten; úsalo en tu propio mundo o Realm.",
+    "buildhelper_litematica.config.generic.name.printerSpeed": "Velocidad de colocación",
+    "buildhelper_litematica.config.generic.prettyName.printerSpeed": "Velocidad de colocación",
+    "buildhelper_litematica.config.generic.comment.printerSpeed": "Bloques colocados por segundo",
+    "buildhelper_litematica.config.generic.name.printerSneakOnly": "Solo al agacharse",
+    "buildhelper_litematica.config.generic.prettyName.printerSneakOnly": "Solo al agacharse",
+    "buildhelper_litematica.config.generic.comment.printerSneakOnly": "Solo coloca bloques mientras te agachas",
+    "buildhelper_litematica.hud.printer_on": "Colocación automática: ACTIVADA",
+    "buildhelper_litematica.message.printer_warning": "La colocación automática está activada. Muchos servidores no lo permiten."
 }

@@ -129,5 +129,16 @@
     "buildhelper_litematica.tooltip.makes_layer": "Turns into, for layer %s:",
     "buildhelper_litematica.tooltip.makes_schematic": "Turns into:",
     "buildhelper_litematica.tooltip.product": "→ %sx %s (≈ %s needed)",
-    "buildhelper_litematica.tooltip.more": "… and %s more"
+    "buildhelper_litematica.tooltip.more": "… and %s more",
+    "buildhelper_litematica.config.generic.name.printerEnabled": "Auto Place",
+    "buildhelper_litematica.config.generic.prettyName.printerEnabled": "Auto Place",
+    "buildhelper_litematica.config.generic.comment.printerEnabled": "Automatically places the block in your hand into the green highlighted spots within reach. Many servers do not allow this, use it on your own world or Realm.",
+    "buildhelper_litematica.config.generic.name.printerSpeed": "Auto Place Speed",
+    "buildhelper_litematica.config.generic.prettyName.printerSpeed": "Auto Place Speed",
+    "buildhelper_litematica.config.generic.comment.printerSpeed": "Blocks placed per second",
+    "buildhelper_litematica.config.generic.name.printerSneakOnly": "Auto Place Only While Sneaking",
+    "buildhelper_litematica.config.generic.prettyName.printerSneakOnly": "Auto Place Only While Sneaking",
+    "buildhelper_litematica.config.generic.comment.printerSneakOnly": "Only place blocks while you are sneaking",
+    "buildhelper_litematica.hud.printer_on": "Auto place: ON",
+    "buildhelper_litematica.message.printer_warning": "Auto place is on. Many servers do not allow this."
 }
