@@ -129,5 +129,16 @@
     "buildhelper_litematica.tooltip.makes_layer": "Превращается (слой %s) в:",
     "buildhelper_litematica.tooltip.makes_schematic": "Превращается в:",
     "buildhelper_litematica.tooltip.product": "→ %sx %s (≈ %s)",
-    "buildhelper_litematica.tooltip.more": "… и ещё %s"
+    "buildhelper_litematica.tooltip.more": "… и ещё %s",
+    "buildhelper_litematica.config.generic.name.printerEnabled": "Автоустановка",
+    "buildhelper_litematica.config.generic.prettyName.printerEnabled": "Автоустановка",
+    "buildhelper_litematica.config.generic.comment.printerEnabled": "Автоматически ставит блок из руки в подсвеченные зелёным места в пределах досягаемости. Многие серверы это запрещают, используйте в своём мире или Realm.",
+    "buildhelper_litematica.config.generic.name.printerSpeed": "Скорость автоустановки",
+    "buildhelper_litematica.config.generic.prettyName.printerSpeed": "Скорость автоустановки",
+    "buildhelper_litematica.config.generic.comment.printerSpeed": "Блоков в секунду",
+    "buildhelper_litematica.config.generic.name.printerSneakOnly": "Только крадучись",
+    "buildhelper_litematica.config.generic.prettyName.printerSneakOnly": "Только крадучись",
+    "buildhelper_litematica.config.generic.comment.printerSneakOnly": "Ставить блоки только когда вы крадётесь",
+    "buildhelper_litematica.hud.printer_on": "Автоустановка: ВКЛ",
+    "buildhelper_litematica.message.printer_warning": "Автоустановка включена. Многие серверы это запрещают."
 }

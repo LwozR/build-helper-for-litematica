@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.2.0
+-----
+* Auto place: places the held block into the highlighted spots within reach, facing the right way (off by default)
+* Wooden doors, trapdoors and fence gates are opened after placing when the schematic wants them open
+* Auto place speed from 1 to 200 blocks per second and an option to only place while sneaking
+
 1.1.0
 -----
 * Auto next layer: in single layer mode the render layer moves on when the current layer is complete, skipping empty and finished layers

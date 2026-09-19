@@ -129,5 +129,16 @@
     "buildhelper_litematica.tooltip.makes_layer": "Devient, couche %s :",
     "buildhelper_litematica.tooltip.makes_schematic": "Devient :",
     "buildhelper_litematica.tooltip.product": "→ %sx %s (≈ %s)",
-    "buildhelper_litematica.tooltip.more": "… et %s de plus"
+    "buildhelper_litematica.tooltip.more": "… et %s de plus",
+    "buildhelper_litematica.config.generic.name.printerEnabled": "Placement automatique",
+    "buildhelper_litematica.config.generic.prettyName.printerEnabled": "Placement automatique",
+    "buildhelper_litematica.config.generic.comment.printerEnabled": "Place automatiquement le bloc en main aux endroits surlignés en vert à portée. Beaucoup de serveurs l'interdisent, utilisez-le dans votre monde ou votre Realm.",
+    "buildhelper_litematica.config.generic.name.printerSpeed": "Vitesse de placement",
+    "buildhelper_litematica.config.generic.prettyName.printerSpeed": "Vitesse de placement",
+    "buildhelper_litematica.config.generic.comment.printerSpeed": "Blocs placés par seconde",
+    "buildhelper_litematica.config.generic.name.printerSneakOnly": "Seulement accroupi",
+    "buildhelper_litematica.config.generic.prettyName.printerSneakOnly": "Seulement accroupi",
+    "buildhelper_litematica.config.generic.comment.printerSneakOnly": "Place les blocs seulement quand vous êtes accroupi",
+    "buildhelper_litematica.hud.printer_on": "Placement automatique : ACTIVÉ",
+    "buildhelper_litematica.message.printer_warning": "Le placement automatique est activé. Beaucoup de serveurs l'interdisent."
 }

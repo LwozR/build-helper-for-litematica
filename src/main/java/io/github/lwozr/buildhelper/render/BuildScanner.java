@@ -90,6 +90,11 @@ public class BuildScanner
         return this.nearbyMissing;
     }
 
+    public void requestNearbyScan()
+    {
+        this.nearbyTickCounter = 5;
+    }
+
     public int getVersion()
     {
         return this.version;
@@ -193,7 +198,8 @@ public class BuildScanner
                Configs.Generic.LAYER_DONE_SOUND.getBooleanValue() ||
                Configs.Generic.AUTO_NEXT_LAYER.getBooleanValue() ||
                Configs.Generic.CONTAINER_HIGHLIGHT.getBooleanValue() ||
-               Configs.Generic.CONTAINER_TOOLTIP.getBooleanValue();
+               Configs.Generic.CONTAINER_TOOLTIP.getBooleanValue() ||
+               Configs.Generic.PRINTER_ENABLED.getBooleanValue();
     }
 
     private static boolean needsFullScan()
@@ -338,7 +344,7 @@ public class BuildScanner
         return (stateClient.isAir() || stateClient.canBeReplaced()) ? TYPE_MISSING : TYPE_WRONG;
     }
 
-    private static boolean sameIgnoringNeighborShape(BlockState stateClient, BlockState stateSchematic)
+    public static boolean sameIgnoringNeighborShape(BlockState stateClient, BlockState stateSchematic)
     {
         if (stateClient.getBlock() != stateSchematic.getBlock())
         {
