@@ -129,5 +129,16 @@
     "buildhelper_litematica.tooltip.makes_layer": "レイヤー %s での加工先:",
     "buildhelper_litematica.tooltip.makes_schematic": "加工先:",
     "buildhelper_litematica.tooltip.product": "→ %sx %s (≈ %s)",
-    "buildhelper_litematica.tooltip.more": "… 他 %s 件"
+    "buildhelper_litematica.tooltip.more": "… 他 %s 件",
+    "buildhelper_litematica.config.generic.name.printerEnabled": "自動設置",
+    "buildhelper_litematica.config.generic.prettyName.printerEnabled": "自動設置",
+    "buildhelper_litematica.config.generic.comment.printerEnabled": "手に持っているブロックを、届く範囲の緑色に強調された場所へ自動で設置します。多くのサーバーでは禁止されているので、自分のワールドや Realm で使ってください。",
+    "buildhelper_litematica.config.generic.name.printerSpeed": "自動設置の速度",
+    "buildhelper_litematica.config.generic.prettyName.printerSpeed": "自動設置の速度",
+    "buildhelper_litematica.config.generic.comment.printerSpeed": "1秒あたりに設置するブロック数",
+    "buildhelper_litematica.config.generic.name.printerSneakOnly": "スニーク中のみ設置",
+    "buildhelper_litematica.config.generic.prettyName.printerSneakOnly": "スニーク中のみ設置",
+    "buildhelper_litematica.config.generic.comment.printerSneakOnly": "スニークしている間だけブロックを設置します",
+    "buildhelper_litematica.hud.printer_on": "自動設置: オン",
+    "buildhelper_litematica.message.printer_warning": "自動設置がオンです。多くのサーバーでは禁止されています。"
 }

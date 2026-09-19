@@ -16,8 +16,10 @@ import net.minecraft.world.item.ItemStack;
 import fi.dy.masa.malilib.interfaces.IRenderer;
 import fi.dy.masa.malilib.render.GuiContext;
 import fi.dy.masa.malilib.util.GuiUtils;
+import fi.dy.masa.malilib.util.StringUtils;
 import io.github.lwozr.buildhelper.Reference;
 import io.github.lwozr.buildhelper.config.Configs;
+import io.github.lwozr.buildhelper.printer.Printer;
 import io.github.lwozr.buildhelper.render.HudRenderer;
 import io.github.lwozr.buildhelper.render.MaterialTooltip;
 import io.github.lwozr.buildhelper.render.TargetRenderer;
@@ -51,6 +53,14 @@ public class RenderHandler implements IRenderer
             profiler.push(Reference.MOD_ID + "_hud");
             HudRenderer.render(ctx);
             profiler.pop();
+        }
+
+        if (ctx.mc().player != null && Printer.isEnabled() && GuiUtils.getCurrentScreen() == null)
+        {
+            String label = StringUtils.translate(Reference.MOD_ID + ".hud.printer_on");
+            int x = GuiUtils.getScaledWindowWidth() / 2 - ctx.mc().font.width(label) / 2;
+            int y = GuiUtils.getScaledWindowHeight() - 72;
+            ctx.drawString(ctx.mc().font, label, x, y, 0xFFFFB040, true);
         }
     }
 

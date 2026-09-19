@@ -129,5 +129,16 @@
     "buildhelper_litematica.tooltip.makes_layer": "Wird in Ebene %s zu:",
     "buildhelper_litematica.tooltip.makes_schematic": "Wird zu:",
     "buildhelper_litematica.tooltip.product": "→ %sx %s (≈ %s)",
-    "buildhelper_litematica.tooltip.more": "… und %s weitere"
+    "buildhelper_litematica.tooltip.more": "… und %s weitere",
+    "buildhelper_litematica.config.generic.name.printerEnabled": "Automatisch platzieren",
+    "buildhelper_litematica.config.generic.prettyName.printerEnabled": "Automatisch platzieren",
+    "buildhelper_litematica.config.generic.comment.printerEnabled": "Platziert den Block in deiner Hand automatisch an die grün markierten Stellen in Reichweite. Viele Server erlauben das nicht, nutze es in deiner eigenen Welt oder deinem Realm.",
+    "buildhelper_litematica.config.generic.name.printerSpeed": "Platziergeschwindigkeit",
+    "buildhelper_litematica.config.generic.prettyName.printerSpeed": "Platziergeschwindigkeit",
+    "buildhelper_litematica.config.generic.comment.printerSpeed": "Platzierte Blöcke pro Sekunde",
+    "buildhelper_litematica.config.generic.name.printerSneakOnly": "Nur beim Schleichen platzieren",
+    "buildhelper_litematica.config.generic.prettyName.printerSneakOnly": "Nur beim Schleichen platzieren",
+    "buildhelper_litematica.config.generic.comment.printerSneakOnly": "Platziert Blöcke nur, während du schleichst",
+    "buildhelper_litematica.hud.printer_on": "Automatisch platzieren: AN",
+    "buildhelper_litematica.message.printer_warning": "Automatisches Platzieren ist an. Viele Server erlauben das nicht."
 }

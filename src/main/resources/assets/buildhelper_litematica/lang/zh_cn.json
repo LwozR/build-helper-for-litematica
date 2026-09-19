@@ -129,5 +129,16 @@
     "buildhelper_litematica.tooltip.makes_layer": "在第 %s 层可加工为：",
     "buildhelper_litematica.tooltip.makes_schematic": "可加工为：",
     "buildhelper_litematica.tooltip.product": "→ %sx %s（≈ %s）",
-    "buildhelper_litematica.tooltip.more": "… 还有 %s 个"
+    "buildhelper_litematica.tooltip.more": "… 还有 %s 个",
+    "buildhelper_litematica.config.generic.name.printerEnabled": "自动放置",
+    "buildhelper_litematica.config.generic.prettyName.printerEnabled": "自动放置",
+    "buildhelper_litematica.config.generic.comment.printerEnabled": "自动将手中的方块放到可触及范围内的绿色高亮位置。许多服务器不允许这样做，请在自己的世界或 Realm 中使用。",
+    "buildhelper_litematica.config.generic.name.printerSpeed": "自动放置速度",
+    "buildhelper_litematica.config.generic.prettyName.printerSpeed": "自动放置速度",
+    "buildhelper_litematica.config.generic.comment.printerSpeed": "每秒放置的方块数",
+    "buildhelper_litematica.config.generic.name.printerSneakOnly": "仅潜行时放置",
+    "buildhelper_litematica.config.generic.prettyName.printerSneakOnly": "仅潜行时放置",
+    "buildhelper_litematica.config.generic.comment.printerSneakOnly": "仅在潜行时放置方块",
+    "buildhelper_litematica.hud.printer_on": "自动放置：开启",
+    "buildhelper_litematica.message.printer_warning": "自动放置已开启。许多服务器不允许这样做。"
 }
